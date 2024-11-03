@@ -1,9 +1,9 @@
-# Your Name Here
+# Krysta Dennis
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
+# 31OCT2024
+# Lab 07
+# Lab Section: 12
+# Sources, people worked with, help given to: Help from Lily Trandal
 # your
 # comments
 # here
@@ -16,10 +16,23 @@
     # To do so you can use the methods `.isdigit()` or `.isnumeric()`
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
+user_input = input("Give an upper bound:")
 
-factorial = 1
-
-print(f"The result of the factorial based on the given bound is {factorial}")
+while (not(user_input.isnumeric())):
+    user_input = input("Give an upper bound:")
+print(f"The. upper bound you put is {input}")
+def fact(n):
+    result = 1
+    if n == 0:
+        result =1
+    else:
+        while n>0:
+            result *= n
+            n -= 1
+        return result
+user_input = int(user_input)
+fact = fact(user_input)
+print(f"The result of the factorial based on the given bound is {fact}")
 
 print("*"*75)
 # Create a while loop that prompts a user for input of an integer values
@@ -36,11 +49,23 @@ print("*"*75)
     # I recommend checking out: https://www.w3schools.com/python/ref_string_replace.asp to figure out how one may remove a character from a string
 # All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
 # The sum should start at 0 
-
 num_sum = 0 
-
-print(f"Your final sum is {num_sum}")
-
+while True:
+    num_input = input(f"Enter a number or exit to stop:").strip()
+    if num_input == "exit":
+        break
+    elif num_input.isdigit():
+        num_sum += int(num_input)
+    elif num_input.startswith("-"):
+        if num_input[1:].isdigit():
+            num_sum += int(num_input)
+    else:
+        print("This is not a number. Try Again:")
+if num_input.isdigit():
+    num_sum += int(num_input)
+else:
+        print(f"That is not a number. Try again:")
+print(f"The final number is {num_sum}")
 print("*"*75)
 # Now you will be creating a two operand calculator
 # It will support the following operators: +,-,/,*,% 
@@ -58,5 +83,31 @@ print("*"*75)
     # So, it should function the same for `5 + 6` as `5+6`
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
+number = 0
+operators = [ '+', '-', '*', '/', '%']
+operators_next = None
 
-        
+def calculator():
+    while True:
+        number = input("Enter a caluculation or exit to stop: ").strip()   
+        if number.lower() == "exit":
+            break
+        for operator in operators:
+            if operator in number:
+                operators_next = operator
+                break
+        digit = number.split(operators_next)
+        digit_1 = int(digit[0].strip())
+        digit_2 = int(digit[1].strip())
+    if operators_next == '+':
+        result = digit_1 + digit_2
+    elif operators_next == '-':
+        result = digit_1 - digit_2
+    elif operators_next == '/':
+        result = digit_1 / digit_2
+    elif operators_next == '*':
+        result = digit_1 * digit_2
+    elif operators_next == '%':
+        result = digit_1 % digit_2
+    print(f"result: {result}")
+calculator()        
